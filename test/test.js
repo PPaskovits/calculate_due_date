@@ -21,6 +21,15 @@ describe('Calculate Due Date Test', function() {
         });
     });
 
+    describe('Zero hours due date', function() {
+        it('should be equal ', function() {
+            var taskDate = new Date(Date.UTC(2018, 5, 5, 16, 30));
+            var date = calculateDueDate(taskDate, 0);
+            var dueDate = new Date(Date.UTC(2018, 5, 5, 16, 30));
+            assert.equal(dueDate.getTime(), date.getTime());
+        });
+    });
+
     describe('Same day 4 hours due date', function() {
         it('should be equal ', function() {
             var taskDate = new Date(Date.UTC(2018, 5, 5, 9, 0));
@@ -131,9 +140,18 @@ describe('Calculate Due Date Test', function() {
 
     describe('Invalid turnaround time', function() {
         it('should throw InvalidTurnaroundTime ', function() {
-            var taskDate = new Date(Date.UTC(2018, 5, 9, 9, 30));
+            var taskDate = new Date(Date.UTC(2018, 5, 5, 9, 30));
             chai.expect(() => {
                 calculateDueDate(taskDate, 'text');
+            }).to.throw(Error, "InvalidTurnaroundTime");
+        });
+    });
+
+    describe('Negative turnaround time', function() {
+        it('should throw InvalidTurnaroundTime ', function() {
+            var taskDate = new Date(Date.UTC(2018, 5, 5, 10, 30));
+            chai.expect(() => {
+                calculateDueDate(taskDate, -8);
             }).to.throw(Error, "InvalidTurnaroundTime");
         });
     });
