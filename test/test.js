@@ -30,6 +30,15 @@ describe('Calculate Due Date Test', function() {
         });
     });
 
+    describe('Day end 8 hours task', function() {
+        it('should be equal ', function() {
+            var taskDate = new Date(Date.UTC(2018, 5, 5, 17, 0));
+            var date = calculateDueDate(taskDate, 8);
+            var dueDate = new Date(Date.UTC(2018, 5, 6, 17, 0));
+            assert.equal(dueDate.getTime(), date.getTime());
+        });
+    });
+
     describe('Same day 4 hours due date', function() {
         it('should be equal ', function() {
             var taskDate = new Date(Date.UTC(2018, 5, 5, 9, 0));
@@ -114,6 +123,15 @@ describe('Calculate Due Date Test', function() {
     describe('Weekday invalid submit date 2', function() {
         it('should throw InvalidSubmitDate ', function() {
             var taskDate = new Date(Date.UTC(2018, 5, 8, 17, 30));
+            chai.expect(() => {
+                calculateDueDate(taskDate, 16);
+            }).to.throw(Error, "InvalidSubmitDate");
+        });
+    });
+
+    describe('Weekday invalid submit date 3 - bugfix test', function() {
+        it('should throw InvalidSubmitDate ', function() {
+            var taskDate = new Date(Date.UTC(2018, 5, 8, 18, 0));
             chai.expect(() => {
                 calculateDueDate(taskDate, 16);
             }).to.throw(Error, "InvalidSubmitDate");

@@ -2,7 +2,9 @@ const START_HOUR = 9;
 const END_HOUR = 17;
 
 function isWorkingHours(date) {
-    return date.getUTCHours() >= START_HOUR && (date.getUTCHours() < END_HOUR  || date.getUTCMinutes() === 0)
+    return date.getUTCHours() >= START_HOUR && 
+          (date.getUTCHours() < END_HOUR  || 
+          (date.getUTCHours() === END_HOUR && date.getUTCMinutes() === 0 && date.getUTCSeconds() === 0 && date.getUTCMilliseconds() === 0))
 }
 
 function isWeekday(date) {
