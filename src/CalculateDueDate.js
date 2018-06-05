@@ -15,7 +15,7 @@ function validSubmitDate(submitDate) {
 
 function addDay(date) {
   date.setDate(date.getDate() + 1);
-}    
+}
 
 function addWorkDays(date, days) {
     while (days) {
