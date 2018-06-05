@@ -12,6 +12,7 @@ Usage:
 ----------------
 
 calculateDueDate(submitDate, turnaroundTime);
+ - returns due date as a Date type
  - submitDate should be Date type
  - turnaroundTime is non-negative number
 
