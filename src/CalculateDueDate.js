@@ -55,13 +55,15 @@ function calculateDueDate(submitDate, turnaroundHours) {
 
     var result = new Date(submitDate);
 
-    var turnaroundMillis = turnaroundHours * 60 * 60 * 1000;
-    while (turnaroundMillis > 0) {
+    var turnaroundMillisLeft = turnaroundHours * 60 * 60 * 1000;
+    while (turnaroundMillisLeft > 0) {
         var remainingWorkTime = getRemaingWorkTime(result);
-        var workTime = Math.min(remainingWorkTime, turnaroundMillis);
+        var workTime = Math.min(remainingWorkTime, turnaroundMillisLeft);
+
         result.setTime(result.getTime() + workTime);
-        turnaroundMillis -= workTime;
-        if (turnaroundMillis > 0) {
+
+        turnaroundMillisLeft -= workTime;
+        if (turnaroundMillisLeft > 0) {
             setToNextWorkDay(result);
         }
     } 
