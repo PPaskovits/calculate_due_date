@@ -17,7 +17,7 @@ calculateDueDate(submitDate, turnaroundTime);
  - turnaroundTime is non-negative number
 
  - Throws "InvalidSubmitDate" error if bug report/task submit date is not valid.
- - Throws "InvalidTurnaroundTime" error if something wrong with Ti
+ - Throws "InvalidTurnaroundTime" error if something wrong with turnaround time.
  
 
 Example:
